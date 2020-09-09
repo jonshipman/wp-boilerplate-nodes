@@ -12,8 +12,8 @@ class HeadlessWpSettings {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_action( 'init', array( $this, 'settings_fields' ) );
-		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'init', array( $this, 'settings_fields' ), 20 );
+		add_action( 'init', array( $this, 'register' ), 30 );
 		add_action( 'graphql_register_types', array( $this, 'graphql' ) );
 	}
 
