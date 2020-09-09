@@ -13,24 +13,12 @@ class HeadlessWpSettings {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'init', array( $this, 'settings_fields' ) );
 		add_action( 'graphql_register_types', array( $this, 'graphql' ) );
+	}
 
-		$settings = array(
-			'routing' => array(
-				'label'  => __( 'Routing', 'wp-boilerplate-nodes' ),
-				'fields' => array(
-					'redirect_page_to_frontend_origin' => array(
-						'label' => __( 'Redirect frontend to React instead of REST API', 'wp-boilerplate-nodes' ),
-						'args'  => array(
-							'type'              => 'boolean',
-							'sanitize_callback' => function( $var ) {
-								return filter_var( $var, FILTER_SANITIZE_NUMBER_INT );
-							},
-						),
-					),
-				),
-			),
-		);
+	public function settings_fields() {
+		$settings = array();
 
 		$this->settings = apply_filters( 'wp_boilerplate_nodes_settings', $settings );
 	}
