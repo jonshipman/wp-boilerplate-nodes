@@ -140,7 +140,7 @@ class HeadlessWpSettings {
 
 	// Adds unique id to the settings type.
 	public function graphql() {
-		$types = array( 'Settings', 'HeadlessWpSettings', 'DiscussionSettings', 'GeneralSettings', 'ReadingSettings', 'WritingSettings' );
+		$types = array( 'Settings', 'WpBoilerplateNodesSettings', 'DiscussionSettings', 'GeneralSettings', 'ReadingSettings', 'WritingSettings' );
 
 		if ( function_exists( 'register_graphql_field' ) ) {
 			foreach ( $types as $type ) {
