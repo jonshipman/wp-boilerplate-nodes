@@ -1060,23 +1060,23 @@ add_action(
 					'type'        => 'AcfGroup',
 					'description' => __( 'All the field groups', 'wp-boilerplate-nodes' ),
 					'args'        => array(
-						'post_id'      => array(
+						'postId'      => array(
 							'type'        => 'Integer',
 							'description' => __( 'Post database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'term_id'      => array(
+						'termId'      => array(
 							'type'        => 'Integer',
 							'description' => __( 'Term database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'menu_item_id' => array(
+						'menu_itemId' => array(
 							'type'        => 'Integer',
 							'description' => __( 'Menu Item database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'user_id'      => array(
+						'userId'      => array(
 							'type'        => 'Integer',
 							'description' => __( 'User database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'comment_id'   => array(
+						'commentId'   => array(
 							'type'        => 'Integer',
 							'description' => __( 'Comment database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
