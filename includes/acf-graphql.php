@@ -1068,7 +1068,7 @@ add_action(
 							'type'        => 'Integer',
 							'description' => __( 'Term database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'menu_itemId' => array(
+						'menuItemId' => array(
 							'type'        => 'Integer',
 							'description' => __( 'Menu Item database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
