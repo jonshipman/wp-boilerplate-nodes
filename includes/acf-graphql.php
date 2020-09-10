@@ -1087,20 +1087,20 @@ add_action(
 						}
 
 						switch ( true ) {
-							case ! empty( $args['post_id'] ):
-								return \WPGraphQL\Data\DataSource::resolve_post_object( $args['post_id'], $context );
+							case ! empty( $args['postId'] ):
+								return \WPGraphQL\Data\DataSource::resolve_post_object( $args['postId'], $context );
 
-							case ! empty( $args['term_id'] ):
-								return \WPGraphQL\Data\DataSource::resolve_term_object( $args['term_id'], $context );
+							case ! empty( $args['termId'] ):
+								return \WPGraphQL\Data\DataSource::resolve_term_object( $args['termId'], $context );
 
-							case ! empty( $args['menu_item_id'] ):
-								return \WPGraphQL\Data\DataSource::resolve_menu_item( $args['menu_item_id'], $context );
+							case ! empty( $args['menuItemId'] ):
+								return \WPGraphQL\Data\DataSource::resolve_menu_item( $args['menuItemId'], $context );
 
-							case ! empty( $args['user_id'] ):
-								return \WPGraphQL\Data\DataSource::resolve_user( $args['user_id'], $context );
+							case ! empty( $args['userId'] ):
+								return \WPGraphQL\Data\DataSource::resolve_user( $args['userId'], $context );
 
-							case ! empty( $args['comment_id'] ):
-								return \WPGraphQL\Data\DataSource::resolve_comment( $args['comment_id'], $context );
+							case ! empty( $args['commentId'] ):
+								return \WPGraphQL\Data\DataSource::resolve_comment( $args['commentId'], $context );
 						}
 					},
 				)
