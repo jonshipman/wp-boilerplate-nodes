@@ -27,6 +27,7 @@ add_action(
 
 		// Require based on if WP-GraphQL is installed.
 		if ( function_exists( 'register_graphql_field' ) ) {
+			require_once 'includes/acf-graphql.php';
 			require_once 'includes/acf-options.php';
 			require_once 'includes/add-frontend-url-in-admin.php';
 			require_once 'includes/admin.php';

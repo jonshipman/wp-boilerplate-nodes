@@ -20,22 +20,6 @@ add_action(
 // Adds extra fields used in the boilerplate.
 if ( ! function_exists( 'wp_boilerplate_nodes_gql_content_nodes_register' ) ) {
 	function wp_boilerplate_nodes_gql_content_nodes_register() {
-
-		// Adds front_page acf fields to wp-graphql.
-		add_filter(
-			'acf_wpgraphql_locations',
-			function ( $locations ) {
-				$locations[] = array(
-					'operator' => '==',
-					'param'    => 'page_type',
-					'value'    => 'front_page',
-					'field'    => 'Page',
-				);
-
-				return $locations;
-			}
-		);
-
 		$name   = 'dateFormatted';
 		$config = array(
 			'type'        => 'String',
