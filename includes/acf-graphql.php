@@ -467,13 +467,13 @@ if ( ! function_exists( 'wp_boilerplate_nodes_register_graphql_field' ) ) {
 								foreach ( $value as $id ) {
 									$post = get_post( $id );
 									if ( ! empty( $post ) ) {
-										$return[] = new Post( $post );
+										$return[] = new \WPGraphQL\Model\Post( $post );
 									}
 								}
 							} else {
 								$post = get_post( absint( $value ) );
 								if ( ! empty( $post ) ) {
-									$return[] = new Post( $post );
+									$return[] = new \WPGraphQL\Model\Post( $post );
 								}
 							}
 						}
