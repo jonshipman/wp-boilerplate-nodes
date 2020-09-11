@@ -27,20 +27,20 @@ add_action(
 
 		// Require based on if WP-GraphQL is installed.
 		if ( function_exists( 'register_graphql_field' ) ) {
-			require_once 'includes/acf-graphql.php';
-			require_once 'includes/acf-options.php';
-			require_once 'includes/add-frontend-url-in-admin.php';
-			require_once 'includes/admin.php';
-			require_once 'includes/content-nodes.php';
-			require_once 'includes/frontend-origin.php';
-			require_once 'includes/headers.php';
-			require_once 'includes/html-entities.php';
-			require_once 'includes/increase-max-post-limit.php';
-			require_once 'includes/jwt.php';
-			require_once 'includes/log.php';
-			require_once 'includes/menus.php';
-			require_once 'includes/redirect.php';
-			require_once 'includes/settings.php';
+			require_once __DIR__ . '/includes/acf-graphql.php';
+			require_once __DIR__ . '/includes/acf-options.php';
+			require_once __DIR__ . '/includes/admin.php';
+			require_once __DIR__ . '/includes/add-frontend-url-in-admin.php';
+			require_once __DIR__ . '/includes/content-nodes.php';
+			require_once __DIR__ . '/includes/frontend-origin.php';
+			require_once __DIR__ . '/includes/headers.php';
+			require_once __DIR__ . '/includes/html-entities.php';
+			require_once __DIR__ . '/includes/increase-max-post-limit.php';
+			require_once __DIR__ . '/includes/jwt.php';
+			require_once __DIR__ . '/includes/log.php';
+			require_once __DIR__ . '/includes/menus.php';
+			require_once __DIR__ . '/includes/redirect.php';
+			require_once __DIR__ . '/includes/settings.php';
 		}
 	},
 	11
