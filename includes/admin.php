@@ -127,8 +127,10 @@ if ( apply_filters( 'wp_boilerplate_nodes_disable_comments_and_pings', true ) ) 
 if ( ! function_exists( 'wp_boilerplate_nodes_wp_login_php_redirect_loggedin' ) ) {
 	function wp_boilerplate_nodes_wp_login_php_redirect_loggedin() {
 		if ( is_user_logged_in() ) {
-			wp_safe_redirect( admin_url() );
-			die;
+			if ( isset( $_GET['action'] ) && $_GET['action'] !== 'logout' ) {
+				wp_safe_redirect( admin_url() );
+				die;
+			}
 		}
 	}
 }
