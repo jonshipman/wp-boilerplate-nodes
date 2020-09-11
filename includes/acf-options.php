@@ -19,5 +19,5 @@ if ( ! function_exists( 'wp_boilerplate_nodes_hide_acf_menu' ) ) {
 add_filter(
 	'acf/settings/show_admin',
 	'wp_boilerplate_nodes_hide_acf_menu',
-	101
+	PHP_INT_MAX
 );
