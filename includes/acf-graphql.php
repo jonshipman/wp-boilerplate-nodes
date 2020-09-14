@@ -1053,6 +1053,21 @@ add_action(
 				)
 			);
 
+			register_graphql_enum_type(
+				'AcfGroupIdTypeEnum',
+				array(
+					'description' => __( 'The id type to query', 'wp-boilerplate-nodes' ),
+					'values'      => array(
+						'POST_ID'      => array( 'value' => 'postId' ),
+						'TERM_ID'      => array( 'value' => 'termId' ),
+						'MENU_ITEM_ID' => array( 'value' => 'menuItemId' ),
+						'USER_ID'      => array( 'value' => 'userId' ),
+						'COMMENT_ID'   => array( 'value' => 'commentId' ),
+						'URI'          => array( 'value' => 'uri' ),
+					),
+				)
+			);
+
 			// Register the field for queries.
 			register_graphql_field(
 				'RootQuery',
@@ -1062,25 +1077,13 @@ add_action(
 					'description' => __( 'All the field groups', 'wp-boilerplate-nodes' ),
 					'fields'      => array(),
 					'args'        => array(
-						'postId'     => array(
-							'type'        => 'Integer',
-							'description' => __( 'Post database id to get the fields for', 'wp-bolierplate-nodes' ),
+						'id'     => array(
+							'type'        => array( 'non_null' => 'ID' ),
+							'description' => __( 'The id of the parent object that you\'re getting the groups for', 'wp-boilerplate-nodes' ),
 						),
-						'termId'     => array(
-							'type'        => 'Integer',
-							'description' => __( 'Term database id to get the fields for', 'wp-bolierplate-nodes' ),
-						),
-						'menuItemId' => array(
-							'type'        => 'Integer',
-							'description' => __( 'Menu Item database id to get the fields for', 'wp-bolierplate-nodes' ),
-						),
-						'userId'     => array(
-							'type'        => 'Integer',
-							'description' => __( 'User database id to get the fields for', 'wp-bolierplate-nodes' ),
-						),
-						'commentId'  => array(
-							'type'        => 'Integer',
-							'description' => __( 'Comment database id to get the fields for', 'wp-bolierplate-nodes' ),
+						'idType' => array(
+							'type'        => 'AcfGroupIdTypeEnum',
+							'description' => __( 'The id type to query', 'wp-boilerplate-nodes' ),
 						),
 					),
 					'resolve'     => function( $root, $args, $context, $info ) {
@@ -1088,21 +1091,38 @@ add_action(
 							return $root;
 						}
 
-						switch ( true ) {
-							case ! empty( $args['postId'] ):
-								return \WPGraphQL\Data\DataSource::resolve_post_object( $args['postId'], $context );
+						if ( ! empty( $args['id'] ) ) {
+							$id = $args['id'];
+						} else {
+							$id = 0;
+						}
 
-							case ! empty( $args['termId'] ):
-								return \WPGraphQL\Data\DataSource::resolve_term_object( $args['termId'], $context );
+						if ( ! empty( $args['idType'] ) ) {
+							$id_type = $args['idType'];
+						} else {
+							$id_type = 'postId';
+						}
 
-							case ! empty( $args['menuItemId'] ):
-								return \WPGraphQL\Data\DataSource::resolve_menu_item( $args['menuItemId'], $context );
+						if ( $id_type === 'uri' ) {
+							$id = url_to_postid( $id );
+						}
 
-							case ! empty( $args['userId'] ):
-								return \WPGraphQL\Data\DataSource::resolve_user( $args['userId'], $context );
+						switch ( $id_type ) {
+							case 'uri':
+							case 'postId':
+								return \WPGraphQL\Data\DataSource::resolve_post_object( $id, $context );
 
-							case ! empty( $args['commentId'] ):
-								return \WPGraphQL\Data\DataSource::resolve_comment( $args['commentId'], $context );
+							case 'termId':
+								return \WPGraphQL\Data\DataSource::resolve_term_object( $id, $context );
+
+							case 'menuItemId':
+								return \WPGraphQL\Data\DataSource::resolve_menu_item( $id, $context );
+
+							case 'userId':
+								return \WPGraphQL\Data\DataSource::resolve_user( $id, $context );
+
+							case 'commentId':
+								return \WPGraphQL\Data\DataSource::resolve_comment( $id, $context );
 						}
 					},
 				)

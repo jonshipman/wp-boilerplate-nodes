@@ -3,7 +3,7 @@
 /*
 Plugin Name: React Boilerplate Node Plugin
 Description: Facilitates the nessesary WP hooks for https://github.com/jonshipman/wp-boilerplate-nodes
-Version: 1.0
+Version: 1.0.1
 Author: Jon Shipman
 Text Domain: wp-boilerplate-nodes
 
