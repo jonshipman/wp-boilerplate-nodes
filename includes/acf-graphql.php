@@ -1048,6 +1048,7 @@ add_action(
 			register_graphql_object_type(
 				'AcfGroup',
 				array(
+					'fields'      => array(),
 					'description' => __( 'All the field groups', 'wp-boilerplate-nodes' ),
 				)
 			);
@@ -1059,12 +1060,13 @@ add_action(
 				array(
 					'type'        => 'AcfGroup',
 					'description' => __( 'All the field groups', 'wp-boilerplate-nodes' ),
+					'fields'      => array(),
 					'args'        => array(
-						'postId'      => array(
+						'postId'     => array(
 							'type'        => 'Integer',
 							'description' => __( 'Post database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'termId'      => array(
+						'termId'     => array(
 							'type'        => 'Integer',
 							'description' => __( 'Term database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
@@ -1072,11 +1074,11 @@ add_action(
 							'type'        => 'Integer',
 							'description' => __( 'Menu Item database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'userId'      => array(
+						'userId'     => array(
 							'type'        => 'Integer',
 							'description' => __( 'User database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
-						'commentId'   => array(
+						'commentId'  => array(
 							'type'        => 'Integer',
 							'description' => __( 'Comment database id to get the fields for', 'wp-bolierplate-nodes' ),
 						),
