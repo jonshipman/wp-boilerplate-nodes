@@ -1104,7 +1104,7 @@ add_action(
 						}
 
 						if ( $id_type === 'uri' ) {
-							$id = apply_filters( 'wp_boilerplate_nodes_url_to_postid', url_to_postid( $id ), $id_type, $id );
+							$id = apply_filters( 'wp_boilerplate_nodes_url_to_postid', url_to_postid( $id ), $id, $id_type );
 						}
 
 						switch ( $id_type ) {
@@ -1154,7 +1154,7 @@ add_action(
 
 // Trys checks URL for ?posttype=postname.
 if ( ! function_exists( 'wp_boilerplate_nodes_check_query_vars' ) ) {
-	function wp_boilerplate_nodes_check_query_vars( $id, $id_type, $url ) {
+	function wp_boilerplate_nodes_check_query_vars( $id, $url ) {
 		if ( ! $id && strpos( $url, '?' ) !== false ) {
 			// Assign $url to $tempURL just incase. :)
 			$tempUrl = $url;
@@ -1179,10 +1179,11 @@ if ( ! function_exists( 'wp_boilerplate_nodes_check_query_vars' ) ) {
 						'name'      => $url_query[1],
 						'post_type' => $url_query[0],
 						'showposts' => 1,
+						'fields'    => 'ids',
 					);
 
 					if ( $post = get_posts( $args ) ) {
-							return $post[0]->ID;
+							return $post[0];
 					}
 				}
 			}
@@ -1192,4 +1193,18 @@ if ( ! function_exists( 'wp_boilerplate_nodes_check_query_vars' ) ) {
 	}
 }
 
-add_filter( 'wp_boilerplate_nodes_url_to_postid', 'wp_boilerplate_nodes_check_query_vars', 10, 3 );
+add_filter( 'wp_boilerplate_nodes_url_to_postid', 'wp_boilerplate_nodes_check_query_vars', 10, 2 );
+
+
+// Check if url is homepage.
+if ( ! function_exists( 'wp_boilerplate_nodes_check_for_homepage' ) ) {
+	function wp_boilerplate_nodes_check_for_homepage( $id, $url ) {
+		if ( ! $id && $url === '/' ) {
+			return get_option( 'page_on_front' );
+		}
+
+		return $id;
+	}
+}
+
+add_filter( 'wp_boilerplate_nodes_url_to_postid', 'wp_boilerplate_nodes_check_for_homepage', 9, 2 );
