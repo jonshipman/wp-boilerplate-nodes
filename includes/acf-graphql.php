@@ -1104,7 +1104,7 @@ add_action(
 						}
 
 						if ( $id_type === 'uri' ) {
-							$id = url_to_postid( $id );
+							$id = apply_filters( 'wp_boilerplate_nodes_url_to_postid', url_to_postid( $id ), $id_type, $id );
 						}
 
 						switch ( $id_type ) {
@@ -1151,3 +1151,45 @@ add_action(
 		do_action( 'wp_boilerplate_nodes_acf_group_register' );
 	}
 );
+
+// Trys checks URL for ?posttype=postname.
+if ( ! function_exists( 'wp_boilerplate_nodes_check_query_vars' ) ) {
+	function wp_boilerplate_nodes_check_query_vars( $id, $id_type, $url ) {
+		if ( ! $id && strpos( $url, '?' ) !== false ) {
+			// Assign $url to $tempURL just incase. :)
+			$tempUrl = $url;
+
+			// Get rid of the #anchor
+			$url_split = explode( '#', $tempUrl );
+			$tempUrl   = $url_split[0];
+
+			// Get rid of URL ?query=string
+			$url_query = explode( '&', $tempUrl );
+			$tempUrl   = $url_query[0];
+
+			// Get rid of ? mark
+			$url_query = explode( '?', $tempUrl );
+
+			if ( isset( $url_query[1] ) && ! empty( $url_query[1] ) && strpos( $url_query[1], '=' ) ) {
+
+					$url_query = explode( '=', $url_query[1] );
+
+				if ( isset( $url_query[0] ) && isset( $url_query[1] ) ) {
+					$args = array(
+						'name'      => $url_query[1],
+						'post_type' => $url_query[0],
+						'showposts' => 1,
+					);
+
+					if ( $post = get_posts( $args ) ) {
+							return $post[0]->ID;
+					}
+				}
+			}
+		}
+
+		return $id;
+	}
+}
+
+add_filter( 'wp_boilerplate_nodes_url_to_postid', 'wp_boilerplate_nodes_check_query_vars', 10, 3 );
