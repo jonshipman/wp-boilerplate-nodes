@@ -59,7 +59,13 @@ class HeadlessWpSettings {
 			add_settings_section(
 				$group,
 				$options['label'],
-				'__return_false',
+				! empty( $options['description'] )
+					?
+						function() use ( $options ) {
+							echo $options['description'];
+						}
+					:
+						'__return_false',
 				$this->get_key()
 			);
 
