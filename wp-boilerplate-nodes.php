@@ -40,6 +40,7 @@ add_action(
 			require_once __DIR__ . '/includes/log.php';
 			require_once __DIR__ . '/includes/menus.php';
 			require_once __DIR__ . '/includes/redirect.php';
+			require_once __DIR__ . '/includes/yoast.php';
 			require_once __DIR__ . '/includes/settings.php';
 		}
 	},
