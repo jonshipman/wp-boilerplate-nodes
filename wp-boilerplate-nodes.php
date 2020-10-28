@@ -47,6 +47,7 @@ add_action(
 			require_once __DIR__ . '/includes/signon.php';
 			require_once __DIR__ . '/includes/set-auth-cookie.php';
 			require_once __DIR__ . '/includes/setcookie-same-site.php';
+			require_once __DIR__ . '/includes/is-logged-in.php';
 			require_once __DIR__ . '/includes/login-with-cookies.php';
 			require_once __DIR__ . '/includes/logout.php';
 		}
