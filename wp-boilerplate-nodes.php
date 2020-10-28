@@ -1,23 +1,25 @@
 <?php
+/**
+ * Plugin Name: React Boilerplate Node Plugin
+ * Description: Facilitates the nessesary WP hooks for https://github.com/jonshipman/wp-boilerplate-nodes
+ * Version: 1.0.1
+ * Author: Jon Shipman
+ * Text Domain: wp-boilerplate-nodes
 
-/*
-Plugin Name: React Boilerplate Node Plugin
-Description: Facilitates the nessesary WP hooks for https://github.com/jonshipman/wp-boilerplate-nodes
-Version: 1.0.1
-Author: Jon Shipman
-Text Domain: wp-boilerplate-nodes
+ * ============================================================================================================
+ * This software is provided "as is" and any express or implied warranties, including, but not limited to, the
+ * implied warranties of merchantibility and fitness for a particular purpose are disclaimed. In no event shall
+ * the copyright owner or contributors be liable for any direct, indirect, incidental, special, exemplary, or
+ * consequential damages(including, but not limited to, procurement of substitute goods or services; loss of
+ * use, data, or profits; or business interruption) however caused and on any theory of liability, whether in
+ * contract, strict liability, or tort(including negligence or otherwise) arising in any way out of the use of
+ * this software, even if advised of the possibility of such damage.
 
-============================================================================================================
-This software is provided "as is" and any express or implied warranties, including, but not limited to, the
-implied warranties of merchantibility and fitness for a particular purpose are disclaimed. In no event shall
-the copyright owner or contributors be liable for any direct, indirect, incidental, special, exemplary, or
-consequential damages(including, but not limited to, procurement of substitute goods or services; loss of
-use, data, or profits; or business interruption) however caused and on any theory of liability, whether in
-contract, strict liability, or tort(including negligence or otherwise) arising in any way out of the use of
-this software, even if advised of the possibility of such damage.
-
-============================================================================================================
-*/
+ * ============================================================================================================
+ *
+ * @package wp_boilerplate_nodes
+ * @since 1.0.0
+ */
 
 define( 'WP_BOILERPLATE_NODES_FILE', __FILE__ );
 
@@ -42,6 +44,11 @@ add_action(
 			require_once __DIR__ . '/includes/redirect.php';
 			require_once __DIR__ . '/includes/yoast.php';
 			require_once __DIR__ . '/includes/settings.php';
+			require_once __DIR__ . '/includes/signon.php';
+			require_once __DIR__ . '/includes/set-auth-cookie.php';
+			require_once __DIR__ . '/includes/setcookie-same-site.php';
+			require_once __DIR__ . '/includes/login-with-cookies.php';
+			require_once __DIR__ . '/includes/logout.php';
 		}
 	},
 	11
