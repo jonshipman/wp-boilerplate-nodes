@@ -1077,8 +1077,12 @@ add_action(
 					'description' => __( 'All the field groups', 'wp-boilerplate-nodes' ),
 					'fields'      => array(),
 					'args'        => array(
+						'uri'    => array(
+							'type'        => 'String',
+							'description' => __( 'You can provide a string URI instead of an ID', 'wp-boilerplate-nodes' ),
+						),
 						'id'     => array(
-							'type'        => array( 'non_null' => 'ID' ),
+							'type'        => 'ID',
 							'description' => __( 'The id of the parent object that you\'re getting the groups for', 'wp-boilerplate-nodes' ),
 						),
 						'idType' => array(
@@ -1101,6 +1105,11 @@ add_action(
 							$id_type = $args['idType'];
 						} else {
 							$id_type = 'postId';
+						}
+
+						if ( ! empty( $args['uri'] ) ) {
+							$id = $args['uri'];
+							$id_type = 'uri';
 						}
 
 						if ( $id_type === 'uri' ) {
